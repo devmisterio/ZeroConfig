@@ -33,7 +33,11 @@ app.MapGet("/weatherforecast", (ILogger<Program> logger) =>
                     summaries[Random.Shared.Next(summaries.Length)]
                 ))
             .ToArray();
-        return forecast;
+        
+        return new {
+            DebugApiKey = apiKey ?? "Değer bulunamadı!",
+            Forecasts = forecast
+        };
     })
     .WithName("GetWeatherForecast");
 
